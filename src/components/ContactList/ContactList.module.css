@@ -1,0 +1,25 @@
+.contactItem{
+font-weight: 600;
+color: rgb(61, 60, 60);
+margin-bottom: 10px;
+
+
+}
+
+.deleteBtn{
+   margin-top: 5px;
+   margin-left: 10px; 
+   background-color: pink;
+ border-color: indianred;
+color: rgb(61, 60, 60);
+font-weight: 600;
+}
+
+.contactList{
+  display: flex; 
+  flex-direction: column; 
+}
+
+.btnContainer{
+   margin-left: auto;
+}
