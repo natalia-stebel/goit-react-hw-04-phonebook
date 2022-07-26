@@ -22,20 +22,22 @@ export default function App() {
   const [filter, setFilter] = useState('');
 
   const formSubmitHandler = (name, number) => {
-    if (name === '') {
-      return toast.error(`Enter contact name`);
-    }
+    // if (name === '') {
+    //   return toast.error(`Enter contact name`);
+    // }
 
-    if (contacts.find(contact => contact.name === name)) {
+    if (
+      contacts.find(contact => contact.toLowerCase() === name.toLowerCase())
+    ) {
       return toast.error(`${name} is already in contacts.`);
+    } else {
+      const contactNew = {
+        id: nanoid(),
+        name,
+        number,
+      };
+      setContacts([contactNew, ...contacts]);
     }
-
-    const contactNew = {
-      id: nanoid(),
-      name,
-      number,
-    };
-    setContacts(prevState => [contactNew, ...prevState]);
   };
 
   const changeFilter = e => {
@@ -60,8 +62,6 @@ export default function App() {
     );
   };
 
-  const filteredContacts = getFilteredContacts();
-
   return (
     <>
       <div className={css.formContainer}>
@@ -71,7 +71,7 @@ export default function App() {
         <Filter onChange={changeFilter} value={filter} contacts={contacts} />
 
         <ContactList
-          contacts={filteredContacts}
+          contacts={getFilteredContacts()}
           onButtonDelete={deleteContact}
         />
         <ToastContainer autoClose={2000} />
