@@ -21,23 +21,20 @@ export default function App() {
 
   const [filter, setFilter] = useState('');
 
-  const formSubmitHandler = (name, number) => {
-    // if (name === '') {
-    //   return toast.error(`Enter contact name`);
-    // }
+  const formSubmitHandler = ({ name, number }) => {
+    const contactNew = {
+      id: nanoid(),
+      name,
+      number,
+    };
 
-    if (
-      contacts.find(contact => contact.toLowerCase() === name.toLowerCase())
-    ) {
-      return toast.error(`${name} is already in contacts.`);
-    } else {
-      const contactNew = {
-        id: nanoid(),
-        name,
-        number,
-      };
-      setContacts([contactNew, ...contacts]);
-    }
+    const checkNewContact = contacts.some(
+      ({ name }) => name === contactNew.name
+    );
+
+    !checkNewContact
+      ? setContacts([contactNew, ...contacts])
+      : toast.error(`${contactNew.name} is already in your list`);
   };
 
   const changeFilter = e => {
