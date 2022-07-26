@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import { ContactItem } from 'components/ContactList/ContactItem';
-import css from "./ContactList.module.css"
+import css from './ContactList.module.css';
 
-
- const ContactList = ({contacts, onButtonDelete}) => {
+const ContactList = ({ contacts, onButtonDelete }) => {
   return (
     <ul className={css.contactList}>
       {contacts.map(({ id, name, number }) => {
@@ -24,8 +23,8 @@ ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
-      name:PropTypes.string.isRequired,
-      number:PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
     })
   ),
 };
